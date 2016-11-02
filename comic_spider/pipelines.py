@@ -32,7 +32,7 @@ class ComicSpiderPipeline(object):
 
     def process_item(self, item, spider):
         if not self.db[self.collection_name].find_one(dict(item)):
-            #self.db[self.collection_name].insert(dict(item))
+            self.db[self.collection_name].insert(dict(item))
             remind_mailer = RemindMailer.config_for(spider.settings)
             remind_mailer.async_send(spider)
         return item
